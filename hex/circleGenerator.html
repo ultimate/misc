@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+
+	<meta charset="utf-8">
+
+	<head>
+	  
+
+		<script type="text/javascript">
+		<!--
+
+			var svg = null;
+		
+			var centerPoint = {x:250,y:250};
+		
+						
+			document.addEventListener("DOMContentLoaded",function(){
+
+				svg = document.getElementById('svg');
+				
+				svg.appendChild(drawCircle([centerPoint.x,centerPoint.y],4,'#ff0099'));
+				
+			
+			},false);
+		
+		
+		
+			function circle1(steps,position) {
+			
+				var circleSize = null;
+				
+				var offset = null;
+				
+			
+				if(position == 'center') {
+					
+					circleSize = Math.PI*2;
+					
+				};
+				
+				if(position == 'left' || position == 'right' ) {
+					
+					circleSize = Math.PI;
+					
+				};
+				
+				
+				if(position == 'left') {
+					
+					offset = Math.PI / steps / 2;
+					
+				};
+				
+				
+				if(position == 'center') {
+				
+					offset = 0;
+					
+				};
+				
+		
+				if(position == 'right') {
+					
+					offset = Math.PI / steps / 2 - Math.PI /2;
+				
+				};
+				
+				for(var i=0;i<steps;i++) {
+				
+				
+					//var coordsTmp = [ Math.cos(circleSize/steps * i -  Math.PI/2 ) * 100 + centerPoint.x , Math.sin(circleSize/steps * i - Math.PI/2) * 100 + centerPoint.y];
+					
+					var coordsTmp = null;
+					
+					
+					if(position == 'left' || position == 'center' ) {
+						
+						coordsTmp = [ Math.cos(circleSize/steps * i -  Math.PI/2 + offset) * 100 + centerPoint.x , Math.sin(circleSize/steps * i - Math.PI/2 + offset) * 100 + centerPoint.y];
+					
+					};
+					
+					
+					if(position == 'right') {
+					
+						coordsTmp = [ Math.sin(circleSize/steps * i -  Math.PI/2 + offset) * 100 + centerPoint.x , Math.cos(circleSize/steps * i - Math.PI/2 + offset) * 100 + centerPoint.y];
+					
+					};
+					
+					
+					svg.appendChild(drawCircle(coordsTmp,2,'#0099ff'));
+					
+					svg.appendChild(drawText(coordsTmp[0] + 4 , coordsTmp[1], i, '#00ff99'));
+				
+				
+				};
+				
+				
+				
+				
+			
+			};
+		
+		
+			
+			// DRAWING
+			function drawCircle(coords,radius,fillcolor) {
+
+				var shape = document.createElementNS('http://www.w3.org/2000/svg','circle');
+
+				shape.setAttributeNS(null, "cx", coords[0]);
+				shape.setAttributeNS(null, "cy", coords[1]);
+
+				shape.setAttributeNS(null, "r", radius);
+				shape.setAttributeNS(null, "fill", fillcolor);
+
+				return shape;
+
+			};
+			
+			
+			function drawText(x, y, text, fill) {
+
+				var textelement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+				textelement.setAttribute("x", x);
+				textelement.setAttribute("y", y);
+
+				textelement.setAttribute("style","font-family:android,arial,sans;font-size:20px;fill:" + fill + ";");
+
+				textelement.textContent = text;
+
+				return textelement;
+			};
+			
+		
+		
+			
+		//-->
+		</script>
+
+		<style type="text/css">
+		<!--
+		
+
+	
+		-->
+		</style>
+		
+		
+	</head>
+	
+	<body>
+	
+
+		<svg id="svg" xmlns="http://www.w3.org/2000/svg" style="width:500px; height:500px; position:absolute; top:50%; left:50%;border:1px solid #000000;margin-left:-250px;margin-top:-250px;">
+		
+
+		 
+		</svg>	
+	
+		<button type="button" style="position:absolute;top:10px;right:10px;" onmousedown="circle1(4,'center')" >circle1</button> 
+	
+	</body>
+	
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>hex</title>
+<meta charset="UTF-8">
+<script type="text/javascript" src="draw.js"></script>
+<script type="text/javascript" src="hex.js"></script>
+<script type="text/javascript">
+	var grid;
+
+	init = function() {
+		var w = 105;
+		var h = 40;
+		
+		grid = new Grid(w,h, hex.MODE_DEFAULT);	
+		grid.debug(document.getElementById("debug"));
+		grid.draw(svg);
+		
+		//grid.territories[0].calculateOutline();
+		//grid.territories[0].draw(document.getElementById("svg"));
+	};
+</script>
+<style type="text/css">
+	body {
+		font-weight: bold;
+		font-family: monospace;
+		line-height: 0.8em;
+		width: 100%;
+		height: 100%;
+	}
+	
+	* {
+		padding: 0px;
+		margin: 0px;
+	}
+	
+	#debug {
+		position: absolute;
+		left: 100px;
+		top: 100px;
+	}
+		
+	#svg {
+		width: 105px;
+		height: 40px;
+		background: #000000;
+		position: absolute;
+		right: 600px;
+		top: 400px;
+		transform:scale(10);
+	}
+</style>
+</head>
+<body onload="init();">
+	<div id="debug"></div>				
+	<svg id="svg"></svg>
+</body>
+</html>

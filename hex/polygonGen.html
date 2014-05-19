@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de">
+
+	<meta charset="utf-8">
+
+	<head>
+	  
+
+		<script type="text/javascript">
+		<!--
+			var svg;
+
+			var hexRadius = 20;
+						
+			document.addEventListener("DOMContentLoaded",function(){
+				svg = document.getElementById('svg');
+				
+				var testHex = calculatePolygon( 0, 0, 6, hexRadius, 0  ); // Math.PI / 2
+
+				console.log('sideLength: ',testHex.sideLength);
+				console.log('innerRadius: ',testHex.innerRadius);
+
+				var horz = parseInt( ( window.innerWidth - hexRadius ) / ( ( hexRadius * 2 + testHex.sideLength ) / 2 ) );
+				var vert = parseInt( ( window.innerHeight - testHex.innerRadius ) / ( testHex.innerRadius * 2 ) );
+
+				console.log('horz: ',horz);
+				console.log('vert: ',vert);
+
+				var countX = 0;
+				var countY = 0;
+
+				var switchX = 4;
+
+				var switchY = 3;
+
+				var distances = [];
+
+				var count = 0;
+
+				var seeds = [];
+
+				var docFragment = document.createDocumentFragment();
+
+				for (var x = 0; x < horz; x++) {
+
+					var hexOffset = 0;
+
+					if( x % 2 !== 0 ) {
+						hexOffset = testHex.innerRadius;
+					};
+
+					
+
+					if( countX > switchX ){
+						countX = 0;
+					};
+
+					countY = 0;
+
+					for (var y = 0; y < vert; y++) {
+						
+						var tmpX = x * ( testHex.sideLength / 2 + hexRadius ) + hexRadius;
+
+						var tmpY = y * testHex.innerRadius * 2 + hexOffset + testHex.innerRadius;
+
+						var hex = calculatePolygon( tmpX, tmpY, 6, hexRadius, 0  ); // Math.PI / 2
+
+						var hexagonShape = drawPath(hex.coords);
+						hexagonShape.setAttributeNS( null, "fill", "rgba(0,0,0,0.2)" );
+						hexagonShape.setAttributeNS( null, "id", count );
+
+						if( countY == switchY && countX == switchX ){
+
+							seeds.push( [ count, tmpX, tmpY, hexagonShape ] );
+
+							hexagonShape.setAttributeNS( null, "fill", "rgba(255,255,255,1)" );
+							count = 0;						
+						} else {
+							distances.push( [ count, tmpX, tmpY, hexagonShape ] );
+						};
+
+
+						count ++;
+						
+
+						if( countY > switchY ){
+							countY = 0;
+						};
+
+						countY ++;
+
+
+
+
+						hexagonShape.setAttributeNS( null, "stroke", "rgba(0,0,0,0)" );
+						hexagonShape.setAttributeNS( null, "stroke-width", "1" );
+						hexagonShape.setAttributeNS( null, "onmousedown", "this.setAttributeNS(null,'fill','#00ff99')");
+
+						docFragment.appendChild( hexagonShape );
+
+					};
+
+					countX ++;
+				};
+
+				console.log('COLORS !');
+
+				for (var i = 0; i < seeds.length; i++) {
+
+					if( Math.random() * 1 > 0.5 ) {
+						var currentColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+
+						seeds[i][3].setAttributeNS( null, "stroke", "rgba(255,255,255,1)" );
+
+						for (var j = 0; j < distances.length; j++) {
+
+							var distance = getDistance(seeds[i][1],distances[j][1],seeds[i][2],distances[j][2]);
+							if( distance < 100 && Math.random() * 1 > 0.5 ){
+								distances[j][3].setAttributeNS( null, "fill", currentColor );
+								distances[j][3].setAttributeNS( null, "stroke", "rgba(255,255,255,1)" );
+							};
+						};						
+					}
+
+				};
+
+				svg.appendChild(docFragment);
+
+
+
+			},false);
+		
+			function calculatePolygon( cx, cy, n, R, rotation ) { // n - sides of polygon, R - outer Radius
+			
+				var coords = []; 
+
+				var sideLength = 2 * R * Math.sin( Math.PI / n );
+				var innerRadius = R * Math.cos( Math.PI / n );
+
+				for (var i = 0; i < n; i++) {
+
+					var a = ( ( ( Math.PI * 2 ) / n ) * i ) + rotation; 
+
+					var x = cx + R * Math.cos(a);
+					var y = cy + R * Math.sin(a);
+
+					coords.push([x,y]);
+				};
+				
+				return { coords : coords, sideLength: sideLength, innerRadius: innerRadius };	
+			};
+		
+	
+			// DRAWING
+			function drawPath( coords ) { // [ [ x0, y0 ], [ x1, y1], ... ]
+
+				var shape = document.createElementNS('http://www.w3.org/2000/svg','path');
+
+				var d = 'M';
+
+				for (var i = 0; i < coords.length; i++) {
+					if( i !== 0 ){
+						d += ' L ' + coords[i][0] + ' ' + coords[i][1];
+					} else {
+						d += coords[i][0] + ' ' + coords[i][1];
+					}
+				};
+
+				d += ' Z';
+
+				shape.setAttributeNS( null, "d", d );
+			
+				return shape;
+			};
+			
+			function getDistance(x1,x2,y1,y2){
+				var xSqr = square( x1 - x2 );
+				var ySqr = square( y1 - y2 );
+				return Math.floor(Math.sqrt(xSqr + ySqr));
+			};
+
+			function square(x){
+				return x * x;
+			};			
+				
+		//-->
+		</script>
+
+		<style type="text/css">
+		<!--
+			#svg {
+				position:absolute; 
+				top:0; 
+				left:0;
+				width:100%; 
+				height:100%;
+				background-color: #0099ff;
+			}		
+		-->
+		</style>
+		
+		
+	</head>
+	
+	<body>
+		<svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg>	
+	</body>
+	
+</html>
