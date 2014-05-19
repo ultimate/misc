@@ -1,0 +1,112 @@
+Ziel:		Visualisierung der simulierten Bevölkerungs-Änderung aus Wachstum und Gefechten
+Idee:		kleine Web-Demo, die
+			- die Einstellung der beeinflussenden Parameter ermöglicht
+			- das eingestellte Szenario an den Server sendet
+			- und das zurückkommende Ergebnis der Simulation visualisiert
+
+Details:	für die Simulation sind verschiedene Parameter erforderlich, diese gliedern sich in 2 Rubriken:
+
+	- Konfiguration:	globale Parameter, die die Art der Simulation beschreiben:
+	
+			zu übertragen als json in folgender Form (ohne Kommentare; Formatierung optional):
+			
+			{
+				duration: 100000,		// Simulationsdauer in ms
+				tickLength:	100, 		// Schrittlänge für die Simulation (theoretischer Abstand zw. zwei Berechnungszeitpunkten) in ms
+				randomizeAttack: 0.25, 	// Zufällige Randomisierung/Abweichung bei der Berechnung der Angriffsstärke (sinnvoller Bereich 0.0 - 0.5; default = 0.25)
+				randomizeBuild: 1.1		// Zufällige Randomisierung/Abweichung bei der Berechnung der Wachstumsstärke (sinnvoller Bereich 0.0 - 2.0; default = 1.1)
+			}
+			
+	- Szenario:			das Szenario beschreibt ein zu simulierendes System mit verschiedenen dort ansässigen/stationierten Populationen.
+			Dabei gibt es einerseits Parameter, die das System beschreiben (size, habitability) als auch Parameter, die die einzelnen Populationen beschreiben.
+			
+			zu übertragen als json in folgender Form (ohne Kommentare; Formatierung optional):
+			
+			{
+				size: 500, 								// Größe im Bereich 0 - 1000
+				habitability: 500,						// Bewohnbarkeit im Bereich 0 - 1000
+				infrastructure: 500,					// Start-Infrastruktur des Systems im Bereich 0 - MAX (MAX = size*habitabilty*1000)
+				populations: [							// liste der Populationen
+					{
+						participant: { id: 123 },		// ID des zugehörigen Spielers (Integer-Zahl > 0), es können mehrere Populationen zu einem Spieler in der Liste enthalten sein
+														// (z. B. Truppen-Verstärkung wird im Verlauf der Simulation zu gegebenem Zeitpunkt auf vorhandene Population angerechnet)
+						colonizationDate: 200,			// Zeitpunkt des Eintreffens der Population in diesem System in ms (sollte im Bereich 0 - duration liegen)
+						population: 10000000,			// Populationswert im Bereich 0 - MAX (siehe oben; bei pop > MAX kann das System nicht so viele aufnehmen und die Bevölkerung geht zurück)
+						storedInfrastructure: 0,		// optionaler Wert für beim Exodus vom Ursprungssystem mitgenommene Infrastruktur (sinnvoller Bereich siehe infrastructure)
+						buildPriority: "balanced",		// Priorisierung des Bauverhaltens (nur ausschlaggebend, wenn 1. anwesende Population des Spielers und wenn diese pop home-Bonus hat)
+														// mögliche Werte ("population", "infrastructure", "balanced")
+						attackPriority:	"balanced"		// Priorisierung des Angriffsverhaltens (nur ausschlaggebend, wenn Population nicht home-Bonus hat)
+														// mögliche Werte ("population", "infrastructure", "balanced")
+					},
+					...					// beliebig viele weitere Populationen, für die jeweils eigene Parameter festgelegt werden können
+				]				
+			}
+			
+	- weitere Parameter:	optional kann ein Seed übergeben werden, der die Randomisierung (s.o.) steuert.
+			Wird der gleiche Seed übergeben, ist das Ergebnis (inkl. Verlauf) bei erneuter Berechnung mit gleicher Konfiguration und Szenario identisch
+			
+	- Kommunikation:	die Informationen sollen in folgender Form an den Server gesendet werden:
+	
+			customurl?params={...}&szenario={...}&seed=1234		// customurl s.u. konfigurierbar
+		
+			Als Ergebnis kommt vom Server ein json-String in folgendem Format zurück:
+			
+			{
+				ticks: [0, 100, 200, 300, ...],				// simulierte Zeitpunkte
+				infrastructure: [500, 1000, 1500, ...],		// Verlauf der Infrastruktur
+				participant_1: [10000000, 10000100, ...],
+				participant_2: [0, 0, 1000, 900, ...]		// Verlauf der Populationen,
+															// wobei hier für jeden im Szenario definierten Spieler genau eine Zeile enthalten ist in der Form "participant_ID" (ID wie oben vergeben)
+			}
+			
+			
+
+Aufgabe:	Implementierung einer kleinen GUI, in der man...
+
+	- die zentralen Simulationsparameter und Systemeigenschaften(duration, tickLength, size, habitability, infrastructure) einstellen kann
+	- eine Liste von Populationen verwalten kann (hinzufügen, ändern, entfernen) und in der man für jede Population die oben aufgeführten Werte einstellen kann
+		- freie Textfelder für die Zahlen (oder auch Slider...)
+		- Selectboxen für die Enums
+	- und dann die Konfiguration und das Szenario an den Server zur simulation schicken kann
+		- per Knopfdruck
+		- oder wenn die Berechnung auf dem Server schnell genug geht auch gerne bei jeder Eingabeänderung
+		- Server-URL irgendwo konfigurierbar
+		
+	und die dann
+	
+	- das Ergebnis in einem skalierten Koordinatensystem darstellt:
+		- x-Bereich: 0 - duration
+		- y-Bereich: 0 - MAX
+	- für jeden Spieler ist dabei eine Kurve enthalten + 1 separat für die Infrastruktur
+		
+Nice-To-Have:
+
+	- Achsenbeschriftung mit Werten
+	- einblendbare Gitterlinien
+	- Styling der Verlaufsgrafik, z. B.
+		- Farbe pro Spieler
+		- Style der Kurve (Geradenabschnitte, Weicher Verlauf / Spline, etc.)
+	- Darstellungsart
+		- einzelne überlagerte Kurven pro Spieler
+		- gestapelte Kurven
+		(siehe z.B. http://www.office2013-blog.de/wp-content/uploads/2013/04/4_Diagrammvarianten.jpg --> 1 vs. 3)
+	- Zoom & Scrollen (nur für Zeitachse; y-Achse s.u.)
+	- Umschalten der y-Achse zwischen Skalierung auf MAX und Skalierung auf tatsächlich höchstem Wert (kann drüber und drunter liegen)
+	- Spieler/Infrastruktur einzeln ein-/ausblenden (und ggf. automatisches skalieren der y-Achse)
+	- Beschränkung des Wertebereichs bei den Textfeldern
+	- sortieren der Populationsliste nach
+		- Zeitpunkt des eintreffens
+		- oder nach Spieler
+	- Anzeige der Werte bei Mouse-Over
+		
+Anmerkungen:
+
+	- es ist mir relativ Wurscht, ob du für die Darstellung ein fertiges Zeichen-Framework nutzt oder es selber bastelst...
+	- solltest du es selber basteln, dann wäre es cool, wenn
+		- das ergebnis in einer separaten .js und ggf. .css Datei vorliegt
+		- ich mir einen solchen Container einfach über einen Konstruktor erstellen kann, z. B.
+			var graphic = new Graph(parentElement)
+		- und ich dann über den Container einfachen Zugriff auf die Stylings etc. hätte
+			graphic.setStyle(...)
+	- dann kann das nämlich später direkt mal für Statistik in syncnapsis integriert werden
+
