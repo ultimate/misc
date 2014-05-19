@@ -1,6 +1,9 @@
 
 **Scroll carefully to prevent spoiler**
 
+Remark:
+* at some point (level 18+) you will only need the password if you skipped level 17
+
 No | link                                                         | username | password | hints& solution (to proceed)
 ---|--------------------------------------------------------------|----------|----------|------------------------------------
 1  | http://www.deathball.net/notpron/levelone.htm                |          |          | click the door
@@ -20,5 +23,6 @@ No | link                                                         | username | p
 15 | http://www.deathball.net/notpron/rusty/board.htm             | deja     | vu       | analyse the numbers in the source code: [line] key; click pipe
 16 | http://www.deathball.net/notpron/zoo/mznvh.htm               | random   | shit     | use the usernames from those levels; number=letter; #=invert (in this table you need to look at the next level); click tile # 16
 17 | http://www.deathball.net/notpron/finale/pron.htm             | doom     | murder   | name what you see as xxx.htm; light.htm is too easy
-18 | http://www.deathball.net/notpron/finale/lamp.htm             |          |          | name what you hear as xxx.htm; piano.htm is too easy
-19 | http://www.deathball.net/notpron/finale/deaf.htm             |          |          | 
+18 | http://www.deathball.net/notpron/finale/lamp.htm             | doom     | murder   | name what you hear as xxx.htm; piano.htm is too easy
+19 | http://www.deathball.net/notpron/finale/deaf.htm             | doom     | murder   | shift the letters of "xfjse tuvgg" one step back; click the finger tip
+20 | http://www.deathball.net/notpron/windows/something.php       | doom     | murder   | 
