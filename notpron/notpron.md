@@ -18,4 +18,5 @@ No | link                                                         | username | p
 13 | http://www.deathball.net/notpron/ps/afterdeath.htm           | remote   | control  | Hover the hidden letters -> they form the username; not in the sky = hell; click clock
 14 | http://www.deathball.net/notpron/neo/beenthere.htm           | devil    | hell     | seen before?; click the power-button on the RC
 15 | http://www.deathball.net/notpron/rusty/board.htm             | deja     | vu       | analyse the numbers in the source code: [line] key; click pipe
-16 | http://www.deathball.net/notpron/zoo/mznvh.htm               | random   | shit     |
+16 | http://www.deathball.net/notpron/zoo/mznvh.htm               | random   | shit     | use the usernames from those levels; number=letter; #=invert (in this table you need to look at the next level); click tile # 16
+17 | http://www.deathball.net/notpron/finale/pron.htm             | doom     | murder   |
