@@ -13,4 +13,5 @@ No | link                                                         | username | p
 8  | http://www.deathball.net/notpron/sdrawkcab/rediar.htm        |          |          | download /stuff/mus2.mp3; rename to png; click guitar hole
 9  | http://www.deathball.net/notpron/luv2music/paulisdead.htm    | inverted | levelten | look at the source-code; use the letters within the "not-spans"; click the "9"
 10 | http://www.deathball.net/notpron/wrong/roawr.htm             | turnmeon | deadman  | download /stuff/mus3.mp3; revert; slow down; click ring
-11 | http://www.deathball.net/notpron/reality/mystery.htm         | grey     | world    |
+11 | http://www.deathball.net/notpron/reality/mystery.htm         | grey     | world    | change image to "screen11.jpg"; click where the light was before
+12 | http://www.deathball.net/notpron/blame/crossview.htm         | fucking  | pans     |
