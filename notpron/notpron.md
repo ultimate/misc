@@ -25,4 +25,4 @@ No | link                                                         | username | p
 17 | http://www.deathball.net/notpron/finale/pron.htm             | doom     | murder   | name what you see as xxx.htm; light.htm is too easy
 18 | http://www.deathball.net/notpron/finale/lamp.htm             |          |          | name what you hear as xxx.htm; piano.htm is too easy
 19 | http://www.deathball.net/notpron/finale/deaf.htm             |          |          | shift the letters of "xfjse tuvgg" one step back; click the finger tip
-20 | http://www.deathball.net/notpron/windows/something.php       |          |          | 
+20 | http://www.deathball.net/notpron/windows/something.php       | weird    | stuff    | 
