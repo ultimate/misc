@@ -26,5 +26,5 @@ No | link                                                         | username | p
 18 | http://www.deathball.net/notpron/finale/lamp.htm             |          |          | name what you hear as xxx.htm; piano.htm is too easy
 19 | http://www.deathball.net/notpron/finale/deaf.htm             |          |          | shift the letters of "xfjse tuvgg" one step back; click the finger tip
 20 | http://www.deathball.net/notpron/windows/something.php       | weird    | stuff    | ignore the number. the rest is windings for the password, click windows-flag
-21 | http://www.deathball.net/notpron/twentyone/again.htm         | really   | unfair   | open files http://www.deathball.net/notpron/twentyone/&lt;color&gt;.jpg, stack them to create a maze, omit those colors named but not displayed, find ways to 1 & 2 for password, click alpha
+21 | http://www.deathball.net/notpron/twentyone/again.htm         | really   | unfair   | open files http://www.deathball.net/notpron/twentyone/%color%.jpg, stack them to create a maze, omit those colors named but not displayed, find ways to 1 & 2 for password, click alpha
 22 | http://www.deathball.net/notpron/beepbeep/banana.htm         | getting  | further  |
