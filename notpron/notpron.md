@@ -29,4 +29,5 @@ No | link                                                         | username | p
 21 | http://www.deathball.net/notpron/twentyone/again.htm         | really   | unfair   | open files http://www.deathball.net/notpron/twentyone/%color%.jpg, stack them to create a maze, omit those colors named but not displayed, find ways to 1 & 2 for password, click alpha
 22 | http://www.deathball.net/notpron/beepbeep/banana.htm         | getting  | further  | the text says all you need to know, change URL
 23 | http://www.deathball.net/notpron/beepbeep/unexpected.htm     |          |          | name "the tiniest unit you can see, change URL; on new page, do what asked for, find the letters with the red dot; change URL again
-24 | http://www.deathball.net/notpron/beepbeep/music.htm          |          |          | 
+24 | http://www.deathball.net/notpron/beepbeep/music.htm          |          |          | look at the source, find words, that could be typed using the telephone number on the bottom (e.g. use http://phonespell.org/), change URL
+25 | http://www.deathball.net/notpron/beepbeep/nextlevel.htm      |          |          | 
