@@ -30,4 +30,5 @@ No | link                                                         | username | p
 22 | http://www.deathball.net/notpron/beepbeep/banana.htm         | getting  | further  | the text says all you need to know, change URL
 23 | http://www.deathball.net/notpron/beepbeep/unexpected.htm     |          |          | name "the tiniest unit you can see, change URL; on new page, do what asked for, find the letters with the red dot; change URL again
 24 | http://www.deathball.net/notpron/beepbeep/music.htm          |          |          | look at the source, find words, that could be typed using the telephone number on the bottom (e.g. use http://phonespell.org/), change URL
-25 | http://www.deathball.net/notpron/beepbeep/nextlevel.htm      |          |          | 
+25 | http://www.deathball.net/notpron/beepbeep/nextlevel.htm      |          |          | the hex codes represent colors, modify the image with a picture editing software, first remove all but FF0000, then all but 0000FF; you will find letters forming the password; click the image
+26 | http://deathball.net/notpron/screen26/                       | riddle   | solved   |
