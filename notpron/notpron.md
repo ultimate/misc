@@ -35,4 +35,5 @@ No | link                                                         | username | p
 27 | http://deathball.net/notpron/screen26/screen26.zip           |          |          | level 27 is now on your local disk, use hint in image to change url of level 26
 28 | http://deathball.net/pron/screen26/                          |          |          | change URL again
 29 | http://deathball.net/pron/screen29/                          |          |          | password is shown, change URL back to notpron and level 30
-30 | http://deathball.net/notpron/screen30/                       | rockin   | boppin   |
+30 | http://deathball.net/notpron/screen30/                       | rockin   | boppin   | go to notpron credits at http://deathball.net/notpron/notpron.htm, click the creators image, note the mistake in the image name, since his name is David M., target image gives you the URL
+31 | http://deathball.net/notpron/screen30/davidandhism.htm       |          |          |
