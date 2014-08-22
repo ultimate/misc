@@ -31,4 +31,8 @@ No | link                                                         | username | p
 23 | http://www.deathball.net/notpron/beepbeep/unexpected.htm     |          |          | name "the tiniest unit you can see, change URL; on new page, do what asked for, find the letters with the red dot; change URL again
 24 | http://www.deathball.net/notpron/beepbeep/music.htm          |          |          | look at the source, find words, that could be typed using the telephone number on the bottom (e.g. use http://phonespell.org/), change URL
 25 | http://www.deathball.net/notpron/beepbeep/nextlevel.htm      |          |          | the hex codes represent colors, modify the image with a picture editing software, first remove all but FF0000, then all but 0000FF; you will find letters forming the password; click the image
-26 | http://deathball.net/notpron/screen26/                       | riddle   | solved   |
+26 | http://deathball.net/notpron/screen26/                       | riddle   | solved   | name what you see as URL "../zipper.htm", that gives you a hint; open the image, rename to zip and download
+27 | http://deathball.net/notpron/screen26/screen26.zip           |          |          | level 27 is now on your local disk, use hint in image to change url of level 26
+28 | http://deathball.net/pron/screen26/                          |          |          | change URL again
+29 | http://deathball.net/pron/screen29/                          |          |          | password is shown, change URL back to notpron and level 30
+30 | http://deathball.net/notpron/screen30/                       |          |          |
