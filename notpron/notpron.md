@@ -2,7 +2,7 @@
 **Scroll carefully to prevent spoiler**
 
 Remark:
-* at some point (level 18+) you will need the password for level 17 if you skipped that level
+* at some point (level 18+) if no password is listed and you skipped a level you might need the password from the most recent level that had a password
 
 No | link                                                         | username | password | hints& solution (to proceed)
 ---|--------------------------------------------------------------|----------|----------|------------------------------------
@@ -27,4 +27,6 @@ No | link                                                         | username | p
 19 | http://www.deathball.net/notpron/finale/deaf.htm             |          |          | shift the letters of "xfjse tuvgg" one step back; click the finger tip
 20 | http://www.deathball.net/notpron/windows/something.php       | weird    | stuff    | ignore the number. the rest is windings for the password, click windows-flag
 21 | http://www.deathball.net/notpron/twentyone/again.htm         | really   | unfair   | open files http://www.deathball.net/notpron/twentyone/%color%.jpg, stack them to create a maze, omit those colors named but not displayed, find ways to 1 & 2 for password, click alpha
-22 | http://www.deathball.net/notpron/beepbeep/banana.htm         | getting  | further  |
+22 | http://www.deathball.net/notpron/beepbeep/banana.htm         | getting  | further  | the text says all you need to know, change URL
+23 | http://www.deathball.net/notpron/beepbeep/unexpected.htm     |          |          | name "the tiniest unit you can see, change URL; on new page, do what asked for, find the letters with the red dot; change URL again
+24 | http://www.deathball.net/notpron/beepbeep/music.htm          |          |          | 
