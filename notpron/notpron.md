@@ -38,4 +38,5 @@ No | link                                                         | username | p
 30 | http://deathball.net/notpron/screen30/                       | rockin   | boppin   | go to notpron credits at http://deathball.net/notpron/notpron.htm, click the creators image, note the mistake in the image name, since his name is David M., target image gives you the URL
 31 | http://deathball.net/notpron/screen30/davidandhism.htm       |          |          | open image with exif reader, use place of dispatch as URL
 32 | http://deathball.net/notpron/screen30/hirstein.htm           |          |          | note the hint in the source code "little difference somewhere!"; compare source to previous level; see difference in style-URL; open style-sheet and get the solution
-33 | http://deathball.net/notpron/screen30/notvaticananymore.htm  |          |          | 
+33 | http://deathball.net/notpron/screen30/notvaticananymore.htm  |          |          | note the difference in the keyboard: a->d, s->k, f->w, t->e, u->l, n->a; hint in the source = "be quiet+anakin" = "stfu+any"; replace letters to get url
+34 | http://deathball.net/notpron/screen30/kewlday.htm            |          |          | 
