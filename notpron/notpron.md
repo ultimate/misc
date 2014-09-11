@@ -41,5 +41,5 @@ No | link                                                         | username | p
 33 | http://deathball.net/notpron/screen30/notvaticananymore.htm  |          |          | note the difference in the keyboard: a->d, s->k, f->w, t->e, u->l, n->a; hint in the source = "be quiet+anakin" = "stfu+any"; replace letters to get url
 34 | http://deathball.net/notpron/screen30/kewlday.htm            |          |          | note the title with regards to the logo hidden in the image: what do you need to carry on -> fuel.htm gives you an extra hint; -82 stands for a missing element; take as URL
 35 | http://deathball.net/notpron/screen30/unleadedfuel.htm       |          |          | in google maps have a look at the GPS coordinates from the title and the message in the password dialog (when clicking the image); zoom in; the shape makes username and password
-36 | http://deathball.net/notpron/nomeaning/                      | mickey   | mouse    | note the non-html-tag? download 36tbh.psd; view the hidden layers to get (part of) the URL
+36 | http://deathball.net/notpron/nomeaning/                      | mickey   | mouse    | note the non-html-tag? download 36tbh.psd; to get the URL view the hidden layers and brighten up the original layer (or the orignal image)
 37 | http://deathball.net/notpron/nomeaning/evolve.htm            |          |          |
