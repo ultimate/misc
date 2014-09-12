@@ -48,4 +48,5 @@ No | link                                                         | username | p
 40 | http://deathball.net/notpron/nomeaning/boobies.htm           |          |          | see the strange pixels in the number; zoom in to get URL
 41 | http://deathball.net/notpron/nomeaning/more.htm              |          |          | decode the sound with morse: --. . -. .. ..- ...
 42 | http://deathball.net/notpron/nomeaning/genius.htm            |          |          | the title says "originally written by", the bottom note translates to voodoo (using the alphabet, not ASCII); bigbadvoodoodaddy.htm gives an extra hint
-43 | http://deathball.net/notpron/nomeaning/scottymorris.htm      |          |          |
+43 | http://deathball.net/notpron/nomeaning/scottymorris.htm      |          |          | the image shown is "43small.jpg"; open "43large.jpg"; look for the solution in the image
+44 | http://deathball.net/notpron/nomeaning/verysmall.htm         |          |          |
