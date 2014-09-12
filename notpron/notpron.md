@@ -47,4 +47,5 @@ No | link                                                         | username | p
 39 | http://deathball.net/notpron/nomeaning/flower.htm            |          |          | translate the numbers in source with ASCII (the alternativ); get 5318008; the calculator is upside down; use the word as URL
 40 | http://deathball.net/notpron/nomeaning/boobies.htm           |          |          | see the strange pixels in the number; zoom in to get URL
 41 | http://deathball.net/notpron/nomeaning/more.htm              |          |          | decode the sound with morse: --. . -. .. ..- ...
-42 | http://deathball.net/notpron/nomeaning/genius.htm            |          |          | 
+42 | http://deathball.net/notpron/nomeaning/genius.htm            |          |          | the title says "originally written by", the bottom note translates to voodoo (using the alphabet, not ASCII); bigbadvoodoodaddy.htm gives an extra hint
+43 | http://deathball.net/notpron/nomeaning/scottymorris.htm      |          |          |
