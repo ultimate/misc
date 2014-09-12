@@ -44,4 +44,5 @@ No | link                                                         | username | p
 36 | http://deathball.net/notpron/nomeaning/                      | mickey   | mouse    | note the non-html-tag? download 36tbh.psd; to get the URL view the hidden layers and brighten up the original layer (or the orignal image)
 37 | http://deathball.net/notpron/nomeaning/evolve.htm            |          |          | the image shows a german calendar; google the date in the title in german format; the person born is the url
 38 | http://deathball.net/notpron/nomeaning/elvis.htm             |          |          | the three symbols have shortcuts in MSN; they are (C), (d), (E); the forth (f) is a flower; use as URL
-39 | http://deathball.net/notpron/nomeaning/flower.htm            |          |          |
+39 | http://deathball.net/notpron/nomeaning/flower.htm            |          |          | translate the numbers in source with ASCII (the alternativ); get 5318008; the calculator is upside down; use the word as URL
+40 | http://deathball.net/notpron/nomeaning/boobies.htm           |          |          |
