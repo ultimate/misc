@@ -46,4 +46,5 @@ No | link                                                         | username | p
 38 | http://deathball.net/notpron/nomeaning/elvis.htm             |          |          | the three symbols have shortcuts in MSN; they are (C), (d), (E); the forth (f) is a flower; use as URL
 39 | http://deathball.net/notpron/nomeaning/flower.htm            |          |          | translate the numbers in source with ASCII (the alternativ); get 5318008; the calculator is upside down; use the word as URL
 40 | http://deathball.net/notpron/nomeaning/boobies.htm           |          |          | see the strange pixels in the number; zoom in to get URL
-41 | http://deathball.net/notpron/nomeaning/more.htm              |          |          |
+41 | http://deathball.net/notpron/nomeaning/more.htm              |          |          | decode the sound with morse: --. . -. .. ..- ...
+42 | http://deathball.net/notpron/nomeaning/genius.htm            |          |          | 
