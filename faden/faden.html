@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SHAPES</title>
+
+	<!--
+    <link rel="stylesheet" type="text/css" href="xyz.css"/>
+	-->
+	<script src="bezier.js"></script>
+	
+	<script type="text/javascript">
+		var SHAPES = {
+			HERZ: 	[[0,-0.6, 0.1,-1, 0.7,-1.2, 0.9,-0.6], [0.9,-0.6, 1.1,0.0, 0,0.55, 0,0.95], [0,0.95, 0,0.55, -1.1,0.0, -0.9,-0.6], [-0.9,-0.6, -0.7,-1.2, -0.1,-1, 0,-0.6]],
+			KREIS: [[1,0, 1,0.552284749831, 0.552284749831,1, 0,1], [0,1, -0.552284749831,1, -1,0.552284749831, -1,0], [-1,0, -1,-0.552284749831, -0.552284749831,-1, 0,-1], [0,-1, 0.552284749831,-1, 1,-0.552284749831, 1,0]],
+		};
+				
+		var redraw = function() {
+			var shape = document.getElementById("input_shape").value;
+			var beziers = [];
+			for(var i = 0; i < SHAPES[shape].length; i++)
+			{
+				beziers[i] = new Bezier(SHAPES[shape][i]);
+			}
+			console.log(shape + ": " + beziers);
+			
+			var size = Number(document.getElementById("input_size").value);
+			var border = Number(document.getElementById("input_border").value);
+			var num_points = Number(document.getElementById("input_points").value);
+			var bg = document.getElementById("input_background").value;
+			
+			document.getElementById("canvas").width = size;
+			document.getElementById("canvas").height = size;
+			var ctx = document.getElementById("canvas").getContext("2d");
+			ctx.fillStyle = bg;
+			ctx.fillRect(0,0,size,size);
+				
+			var points = [];
+			
+			// Naegel zeichnen
+			var t;
+			var p;
+			var b = 0;
+			// pruefe ob erster = letzter Punkt
+			var divisor = num_points-1;
+			var firstPoint = beziers[0].point(0);
+			var lastPoint = beziers[beziers.length-1].point(1);
+			if(firstPoint[0] - lastPoint[0] < 0.001 && firstPoint[1] - lastPoint[1] < 0.001)
+			{
+				// wir koennen einen Schritt mehr machen, weil der letzte Punkt gleich dem ersten ist
+				divisor = num_points;
+			}
+			for(var i = 0; i < num_points; i++)
+			{
+				t = (beziers.length / divisor * i) - b;
+				if(t > 1)
+				{
+					t--;
+					b++;
+				}
+				p = beziers[b].point(t);	
+				p[0] = (p[0]*(size-border*2)+size)/2;	
+				p[1] = (p[1]*(size-border*2)+size)/2;
+				ctx.strokeStyle = "#000000";
+				ctx.beginPath();
+				ctx.arc(p[0],p[1],1,0,2*Math.PI);
+				ctx.stroke();
+				console.log("t=" + t + " x=" + p[0] + " y=" + p[1]);
+				points.push(p);
+			}
+			
+			console.log(points);
+			
+			for(var i = 1; i <= 10; i++)
+			{
+				var color = document.getElementById("input_" + i + "_color").value;
+				var start = Number(document.getElementById("input_" + i + "_start").value);
+				var stepsize = Number(document.getElementById("input_" + i + "_stepsize").value);
+				var steps = Number(document.getElementById("input_" + i + "_steps").value);
+				var activated = document.getElementById("input_" + i + "_activated").checked;
+				
+				if(activated)
+				{
+					ctx.beginPath();
+					ctx.strokeStyle = color;
+					var x = start;		
+					ctx.moveTo(points[x][0], points[x][1]);
+					for(var s = 0; s < steps; s++)
+					{
+						x += stepsize;
+						if(x >= num_points)
+							x -= num_points;
+							
+						//console.log(x);
+						// draw line
+						ctx.lineTo(points[x][0], points[x][1]);
+						
+						if(x == start)
+							break;
+					}					
+					ctx.stroke();
+				}
+			}
+			for(var i = 11; i <= 20; i++)
+			{
+				var color = document.getElementById("input_" + i + "_color").value;
+				var steps = Number(document.getElementById("input_" + i + "_steps").value);
+				var activated = document.getElementById("input_" + i + "_activated").checked;
+				
+				var start1 = Number(document.getElementById("input_" + i + "_start1").value);
+				var stepsize1a = Number(document.getElementById("input_" + i + "_stepsize1a").value);
+				var stepsize1b = Number(document.getElementById("input_" + i + "_stepsize1b").value);
+				var start2 = Number(document.getElementById("input_" + i + "_start2").value);
+				var stepsize2a = Number(document.getElementById("input_" + i + "_stepsize2a").value);
+				var stepsize2b = Number(document.getElementById("input_" + i + "_stepsize2b").value);
+				
+				if(activated)
+				{
+					ctx.beginPath();
+					ctx.strokeStyle = color;
+					var phase = 0;
+					var x1 = start1;	
+					var x2 = start2;
+					var x = x1;
+					var break_count = 0;
+					ctx.moveTo(points[x][0], points[x][1]);
+					for(var s = 0; s < steps; s++)
+					{
+						var old_x = x;
+						switch(phase)
+						{
+							case 0:
+								x = x2;
+								x2 += stepsize2a;
+								x1 += stepsize1b;
+								break;
+							case 1:
+								x = x2;
+								break;
+							case 2:
+								x = x1;								
+								x1 += stepsize1a;
+								x2 += stepsize2b;
+								break;
+							case 3:	
+								x = x1;
+								break;
+						}
+						
+						while(x >= num_points)
+							x -= num_points;
+						while(x < 0)
+							x += num_points;
+							
+						phase++;
+						if(phase > 3)
+							phase -= 4;
+						
+						if(old_x == x)
+						{
+							s--; // schritte nicht erhoehen
+							break_count++;
+						}
+						else
+						{
+							break_count = 0;
+						}
+						if(break_count > 4)
+							break; // endlos schleife verhindern
+						
+							
+						//console.log(x);
+						// draw line
+						ctx.lineTo(points[x][0], points[x][1]);
+						
+						//if(x == start)
+						//	break;
+					}					
+					ctx.stroke();
+				}
+			}
+		};
+		
+		var init = function() {
+			var select = document.getElementById("input_shape");
+			for(var s in SHAPES)
+			{
+				var o = document.createElement("option");
+				o.value = s;
+				o.innerHTML = s;
+				select.appendChild(o);
+			}
+			
+			redraw();
+		};
+		
+		document.addEventListener("DOMContentLoaded", init);
+	</script>
+	
+	<style>
+		#control div div {
+			display: inline;
+			margin-left: 20px;
+		}
+		
+		#control input[type=number] {
+			width: 100px;
+		}
+		
+		#control span {
+			margin-left: 40px;
+		}
+		
+		#control {
+			height: 100%;
+			overflow: scroll;
+			display: inline-block;
+			width: 50%;
+			padding: 10px;
+			vertical-align: top;
+			max-height: 800px;
+		}
+		
+		#draw {
+			display: inline-block;
+			width: 45%;
+			padding: 0px;"
+		}
+		
+		h1 {
+			font-size: 14pt;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id="control">
+		<h1>Form</h1>
+		<div>
+			<div><select id="input_shape" onchange="javascript: redraw();"></select></div>
+			<div>Punkte: <input id="input_points" type="number" onchange="javascript: redraw();" value="100"/></div>
+			<input type="button" value="Neu zeichnen" onclick="redraw();"/>
+		</div>
+		<h1>Brett</h1>
+		<div>
+			<div>Hintergrund: <input id="input_background" type="color" onchange="javascript: redraw();" value="#ffffff"/></div>
+			<div>Gr&ouml;&szlig;e: <input id="input_size" type="number" onchange="javascript: redraw();" value="800"/></div>
+			<div>Rahmen: <input id="input_border" type="number" onchange="javascript: redraw();" value="10"/></div>
+		</div>
+		<h1>F&auml;den mit fester Schrittweite:</h1>
+		<div>#1
+			<div>Farbe: <input id="input_1_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>Start: <input id="input_1_start" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e: <input id="input_1_stepsize" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schritte: <input id="input_1_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_1_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+		</div>
+		<div>#2
+			<div>Farbe: <input id="input_2_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>Start: <input id="input_2_start" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e: <input id="input_2_stepsize" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schritte: <input id="input_2_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_2_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+		</div>
+		<div>#3
+			<div>Farbe: <input id="input_3_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>Start: <input id="input_3_start" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e: <input id="input_3_stepsize" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schritte: <input id="input_3_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_3_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+		</div>
+		<div>#4
+			<div>Farbe: <input id="input_4_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>Start: <input id="input_4_start" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e: <input id="input_4_stepsize" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schritte: <input id="input_4_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_4_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+		</div>
+		<div>#5
+			<div>Farbe: <input id="input_5_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>Start: <input id="input_5_start" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e: <input id="input_5_stepsize" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schritte: <input id="input_5_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_5_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+		</div>
+		<div>#6
+			<div>Farbe: <input id="input_6_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>Start: <input id="input_6_start" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e: <input id="input_6_stepsize" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schritte: <input id="input_6_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_6_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+		</div>
+		<div>#7
+			<div>Farbe: <input id="input_7_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>Start: <input id="input_7_start" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e: <input id="input_7_stepsize" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schritte: <input id="input_7_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_7_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+		</div>
+		<div>#8
+			<div>Farbe: <input id="input_8_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>Start: <input id="input_8_start" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e: <input id="input_8_stepsize" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schritte: <input id="input_8_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_8_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+		</div>
+		<div>#9
+			<div>Farbe: <input id="input_9_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>Start: <input id="input_9_start" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e: <input id="input_9_stepsize" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schritte: <input id="input_9_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_9_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+		</div>
+		<div>#10
+			<div>Farbe: <input id="input_10_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>Start: <input id="input_10_start" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e: <input id="input_10_stepsize" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schritte: <input id="input_10_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_10_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+		</div>
+		<h1>F&auml;den mit variabler Schrittweite:</h1>
+		<div>#11
+			<div>Farbe: <input id="input_11_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>L&auml;nge: <input id="input_11_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_11_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 1:</span>
+			<div>Start: <input id="input_11_start1" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_11_stepsize1a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_11_stepsize1b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 2:</span>
+			<div>Start: <input id="input_11_start2" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_11_stepsize2a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_11_stepsize2b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+		</div>
+		<div>#12
+			<div>Farbe: <input id="input_12_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>L&auml;nge: <input id="input_12_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_12_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 1:</span>
+			<div>Start: <input id="input_12_start1" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_12_stepsize1a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_12_stepsize1b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 2:</span>
+			<div>Start: <input id="input_12_start2" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_12_stepsize2a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_12_stepsize2b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+		</div>
+		<div>#13
+			<div>Farbe: <input id="input_13_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>L&auml;nge: <input id="input_13_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_13_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 1:</span>
+			<div>Start: <input id="input_13_start1" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_13_stepsize1a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_13_stepsize1b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 2:</span>
+			<div>Start: <input id="input_13_start2" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_13_stepsize2a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_13_stepsize2b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+		</div>
+		<div>#14
+			<div>Farbe: <input id="input_14_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>L&auml;nge: <input id="input_14_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_14_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 1:</span>
+			<div>Start: <input id="input_14_start1" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_14_stepsize1a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_14_stepsize1b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 2:</span>
+			<div>Start: <input id="input_14_start2" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_14_stepsize2a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_14_stepsize2b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+		</div>
+		<div>#15
+			<div>Farbe: <input id="input_15_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>L&auml;nge: <input id="input_15_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_15_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 1:</span>
+			<div>Start: <input id="input_15_start1" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_15_stepsize1a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_15_stepsize1b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 2:</span>
+			<div>Start: <input id="input_15_start2" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_15_stepsize2a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_15_stepsize2b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+		</div>
+		<div>#16
+			<div>Farbe: <input id="input_16_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>L&auml;nge: <input id="input_16_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_16_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 1:</span>
+			<div>Start: <input id="input_16_start1" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_16_stepsize1a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_16_stepsize1b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 2:</span>
+			<div>Start: <input id="input_16_start2" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_16_stepsize2a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_16_stepsize2b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+		</div>
+		<div>#17
+			<div>Farbe: <input id="input_17_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>L&auml;nge: <input id="input_17_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_17_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 1:</span>
+			<div>Start: <input id="input_17_start1" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_17_stepsize1a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_17_stepsize1b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 2:</span>
+			<div>Start: <input id="input_17_start2" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_17_stepsize2a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_17_stepsize2b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+		</div>
+		<div>#18
+			<div>Farbe: <input id="input_18_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>L&auml;nge: <input id="input_18_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_18_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 1:</span>
+			<div>Start: <input id="input_18_start1" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_18_stepsize1a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_18_stepsize1b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 2:</span>
+			<div>Start: <input id="input_18_start2" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_18_stepsize2a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_18_stepsize2b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+		</div>
+		<div>#19
+			<div>Farbe: <input id="input_19_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>L&auml;nge: <input id="input_19_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_19_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 1:</span>
+			<div>Start: <input id="input_19_start1" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_19_stepsize1a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_19_stepsize1b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 2:</span>
+			<div>Start: <input id="input_19_start2" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_19_stepsize2a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_19_stepsize2b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+		</div>
+		<div>#20
+			<div>Farbe: <input id="input_20_color" type="color" onchange="javascript: redraw();"/></div>
+			<div>L&auml;nge: <input id="input_20_steps" type="number" onchange="javascript: redraw();"/></div>
+			<div>Aktiv? <input id="input_20_activated" type="checkbox" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 1:</span>
+			<div>Start: <input id="input_20_start1" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_20_stepsize1a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_20_stepsize1b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+			<span>Seite 2:</span>
+			<div>Start: <input id="input_20_start2" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e mit Faden: <input id="input_20_stepsize2a" type="number" onchange="javascript: redraw();"/></div>
+			<div>Schrittgr&ouml;&szlig;e ohne Faden: <input id="input_20_stepsize2b" type="number" onchange="javascript: redraw();"/></div>
+			<br/>
+		</div>
+	</div>
+	<div id="draw">
+		<canvas id="canvas" style="border: 1px solid gray;"></canvas>
+	</div>
+</body>
+</html>
