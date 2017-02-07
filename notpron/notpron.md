@@ -49,4 +49,5 @@ No | link                                                         | username | p
 41 | http://deathball.net/notpron/nomeaning/more.htm              |          |          | decode the sound with morse: --. . -. .. ..- ...
 42 | http://deathball.net/notpron/nomeaning/genius.htm            |          |          | the title says "originally written by", the bottom note translates to voodoo (using the alphabet, not ASCII); bigbadvoodoodaddy.htm gives an extra hint
 43 | http://deathball.net/notpron/nomeaning/scottymorris.htm      |          |          | the image shown is "43small.jpg"; open "43large.jpg"; look for the solution in the image
-44 | http://deathball.net/notpron/nomeaning/verysmall.htm         |          |          |
+44 | http://deathball.net/notpron/nomeaning/verysmall.htm         |          |          | download the image and shift the rows by aligning the black squares vertically; use word as url
+45 | http://notpron.org/notpron/nomeaning/blow.htm                |          |          |
