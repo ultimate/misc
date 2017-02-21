@@ -51,4 +51,5 @@ No | link                                                         | username | p
 43 | http://deathball.net/notpron/nomeaning/scottymorris.htm      |          |          | the image shown is "43small.jpg"; open "43large.jpg"; look for the solution in the image
 44 | http://deathball.net/notpron/nomeaning/verysmall.htm         |          |          | download the image and shift the rows by aligning the black squares vertically; use word as url
 45 | http://notpron.org/notpron/nomeaning/blow.htm                |          |          | see the numbers from 40 to 45 in the image and the source code in different languages; find the correct (different) language for the number 46
-46 | http://notpron.org/notpron/nomeaning/fyrtiosex.htm           |          |          |
+46 | http://notpron.org/notpron/nomeaning/fyrtiosex.htm           |          |          | note 46a.jpg; there's a 46b.jpg, too; download both an use b as a mask for a; the content of the white rectangles cut out letters; follow the invisible links and use the letters as username and password
+47 | http://notpron.org/notpron/threethreethree/                  | extra    | fun      |
