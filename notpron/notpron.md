@@ -55,4 +55,5 @@ No | link                                                         | username | p
 47 | http://notpron.org/notpron/threethreethree/                  | extra    | fun      | note that the background music is different; these are diminished chords. C#dim, A#dim... Different solutions (adim.htm, cdim.htm) all lead to gbdim. (Needed to look that up...)
 48 | http://notpron.org/notpron/threethreethree/gbdim.htm         |          |          | note that the picture shows an DNA-Sequence; if you translate the title-sequence (e.g. using http://www.fr33.net/translator.php or http://db.systemsbiology.net:8080/proteomicsToolkit/DNATranslator.html) you'll receive the solution for the URL
 49 | http://notpron.org/notpron/threethreethree/valentine.htm     |          |          | note the hints in the source code - this level is about differences between USA and Germany; follow the link under the number; translate the hint on the login-form to the german version (note: 911 is for emergency, not the date)
-50 | http://notpron.org/notpron/flutsch/index.htm                 | 110      | eurocelsius | 
+50 | http://notpron.org/notpron/flutsch/index.htm                 | 110      | eurocelsius | if you use "shot" for the URL you'll get a second hint; use this as url
+51 | http://notpron.org/notpron/flutsch/laser.htm                 |          |          |
