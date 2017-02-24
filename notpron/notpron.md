@@ -56,7 +56,8 @@ No | link                                                         | username | p
 48 | http://notpron.org/notpron/threethreethree/gbdim.htm         |          |          | note that the picture shows an DNA-Sequence; if you translate the title-sequence (e.g. using http://www.fr33.net/translator.php or http://db.systemsbiology.net:8080/proteomicsToolkit/DNATranslator.html) you'll receive the solution for the URL
 49 | http://notpron.org/notpron/threethreethree/valentine.htm     |          |          | note the hints in the source code - this level is about differences between USA and Germany; follow the link under the number; translate the hint on the login-form to the german version (note: 911 is for emergency, not the date)
 50 | http://notpron.org/notpron/flutsch/index.htm                 | 110      | eurocelsius | if you use "shot" for the URL you'll get a second hint; use this as url
-51 (fake) | http://notpron.org/notpron/flutsch/laser.htm                 |          |          | just name what you see and use it as URL
-52 (fake) | http://notpron.org/notpron/flutsch/tower.htm                 |          |          | what is carrying the branches?
-53 (fake) | http://notpron.org/notpron/flutsch/tree.htm                  |          |          | what do you see?
-50 (again) | http://notpron.org/notpron/flutsch/road.htm                  |          |          | 
+51 (fake) | http://notpron.org/notpron/flutsch/laser.htm          |          |          | just name what you see and use it as URL
+52 (fake) | http://notpron.org/notpron/flutsch/tower.htm          |          |          | what is carrying the branches?
+53 (fake) | http://notpron.org/notpron/flutsch/tree.htm           |          |          | what do you see?
+50 (again) | http://notpron.org/notpron/flutsch/road.htm          |          |          | look at the source-code of the top.htm; scroll all the way down to find url
+51 | http://notpron.org/notpron/flutsch/boring.htm                |          |          |
