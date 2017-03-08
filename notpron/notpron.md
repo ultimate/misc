@@ -60,4 +60,5 @@ No | link                                                         | username | p
 52 (fake) | http://notpron.org/notpron/flutsch/tower.htm          |          |          | what is carrying the branches?
 53 (fake) | http://notpron.org/notpron/flutsch/tree.htm           |          |          | what do you see?
 50 (again) | http://notpron.org/notpron/flutsch/road.htm          |          |          | look at the source-code of the top.htm; scroll all the way down to find url
-51 | http://notpron.org/notpron/flutsch/boring.htm                |          |          |
+51 | http://notpron.org/notpron/flutsch/boring.htm                |          |          | It seems the player shown is cheating. If you google for MineSweeper cheats you'll find a key sequence, which is the URL
+52 | http://notpron.org/notpron/flutsch/xyzzy.htm                 |          |          |
