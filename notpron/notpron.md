@@ -61,4 +61,5 @@ No | link                                                         | username | p
 53 (fake) | http://notpron.org/notpron/flutsch/tree.htm           |          |          | what do you see?
 50 (again) | http://notpron.org/notpron/flutsch/road.htm          |          |          | look at the source-code of the top.htm; scroll all the way down to find url
 51 | http://notpron.org/notpron/flutsch/boring.htm                |          |          | It seems the player shown is cheating. If you google for MineSweeper cheats you'll find a key sequence, which is the URL
-52 | http://notpron.org/notpron/flutsch/xyzzy.htm                 |          |          |
+52 | http://notpron.org/notpron/flutsch/xyzzy.htm                 |          |          | Note this is a map of Europe turned upside down; Note some of the pins are pointing to capitals, some not; Use the abbreviations for those correct countries (A, B, CH, E, L) and find an anagram
+53 | http://notpron.org/notpron/flutsch/bleach.htm                |          |          |
