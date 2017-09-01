@@ -1,0 +1,18 @@
+http://www.dangerousroads.org/rankings23/4935-the-most-famous-hairpin-turns-roads.html
+--> Paso de los Caracoles 			--> "-32.825269, -70.070617"
+--> Passo dello Stelvio				--> "46.526497, 10.453457"
+--> Kallikratis-Kapsodasos Road		--> "35.211790, 24.239173"
+--> Col du Chaussy					--> "45.320040, 6.341512"
+--> Curvas de Huanchaca				--> "-13.690161, -72.334300"
+--> Col de Tende					--> "44.141899, 7.563458"
+--> Paso Portachuelo Llanganuco		--> "-9.046952, -77.591944"
+--> Carretera a Collpani			--> "-17.151492, -67.619312"
+-->	Passo del San Gottardo			--> "46.541004, 8.574952"
+--> Passo del San Gottardo			--> "46.639718, 8.579091"
+-->	Sangetsar Lake					--> "Zemithang"
+--> Three Level Zigzag road 		--> "27.249855, 88.775166"
+
+
+--> Breezanddijk					--> "53.018390, 5.210229"
+--> Ponte Vasco da Gama 			--> "38.765888, -9.047994"
+--> Flamingo, Everglades NP, FL		--> "25.136693, -80.948540"
