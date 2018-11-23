@@ -18,6 +18,8 @@
 	body {
 		margin: 0;
 		cursor: pointer;
+		overflow: hidden;
+		/*background: darkred;*/
 	}
 
 	#calendar {
@@ -29,21 +31,52 @@
 	}
 		
 	#calendar div {
-		width: 25%;
-		background-image: url(star.png);
+		width: 25vw;
+		height: 25vw;
 		background-size: 100%;
 		background-repeat: no-repeat;
+		font-size: 0;
+	}
+	
+	#calendar div.closed {
+		background-image: url(star.png) !important;
 		text-align: center;
 		line-height: 15vh;
 		font-size: 5vh;
 		font-family: "Comic Sans MS";
+		color: white;
+		text-shadow: -0.1vh 0 gold, 0 0.1vh gold, 0.1vh 0 gold, 0 0.1vh gold;
+	}
+	
+	#detail {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		width: 80vw;
+		height: 80vw;
+		border: 1vw solid gold;
+		border-style: groove;
+		background: white;
+		background-size: 100%;
+	}
+	
+	#detail.hidden {
+		display: none;
 	}
 </style>
 <script type="text/javascript">
 	var currentDay = 0;
+	var inited = false;
 	// init
-	var init = function(currentDay) {
-		if(currentDay == null)
+	var init = function(overwriteDay) {
+		if(overwriteDay != null)
+		{
+			currentDay = overwriteDay;
+		}
+		else
 		{
 			var date = new Date();
 			if(date.getMonth() < 11)
@@ -52,39 +85,49 @@
 				currentDay = date.getDate();
 		}
 	
-		for(var day = 1; day <= 24; day++)
+		if(!inited)
 		{
-			var dayElement = document.createElement("div");
-			dayElement.style.backgroundImage = day + ".png";
-			dayElement.innerHTML = day;
-								
-			dayElement.onclick = function(day) {
-				return function(event) {					
-					if(day > currentDay)
-						return;
+			for(var day = 1; day <= 24; day++)
+			{
+				var dayElement = document.createElement("div");
+				dayElement.classList.add("closed");
+				dayElement.style.backgroundImage = "url(" + day + ".png)";
+				dayElement.innerHTML = day;
+									
+				dayElement.onclick = function(day, dayElement) {
+					return function(event) {	
+						console.log("click " + day);
 						
-					if(localStorage.getItem("day." + day) == "open")
-						document.getElementById("day_" + day).classList.add("open");
-					else
-						localStorage.setItem("day." + day, "open");
-						
-					showImage(day);						
-				};
-			} (day);
-			
-			if(localStorage.getItem("day." + day) == "open")
-				dayElement.classList.add("open");
+						if(localStorage.getItem("day." + day) == "open")
+						{
+							showImage(day);						
+						}
+						else if(day <= currentDay)
+						{								
+							dayElement.classList.remove("closed");
+							
+							localStorage.setItem("day." + day, "open");
+							setTimeout("showImage(" + day + ");", 1000);
+						}
+					};
+				} (day, dayElement);
 				
-			document.getElementById("calendar").append(dayElement);
+				if(localStorage.getItem("day." + day) == "open")
+					dayElement.classList.remove("closed");
+					
+				document.getElementById("calendar").append(dayElement);
+			}
+			
+			document.getElementById("detail").onclick = function(event) {
+				hideImage();
+			};
+			
+			inited = true;
 		}
-		
-		document.getElementById("detail").onclick = function(event) {
-			hideImage();
-		};
 	};
 	
 	var showImage = function(day) {		
-		document.getElementById("detail").style.backgroundImage = day + ".png";
+		document.getElementById("detail").style.backgroundImage = "url(" + day + ".png)";
 		document.getElementById("detail").classList.remove("hidden");
 	}
 	
@@ -98,6 +141,6 @@
 <body onload="init();">
 	<div id="calendar">
 	</div>
-	<div id="detail"></div>
+	<div id="detail" class="hidden"></div>
 </body>
 </html>
