@@ -31,12 +31,14 @@
 	}
 		
 	#calendar div {
-		width: 25vw;
-		height: 25vw;
+		width: 23vw;
+		height: 23vw;
+		padding: 1vw;
 		background-size: contain;
 		background-position: center;
 		background-repeat: no-repeat;
 		font-size: 0;
+		background-origin: content-box;
 	}
 	
 	#calendar div.closed {
@@ -56,14 +58,16 @@
 		left: 0;
 		right: 0;
 		margin: auto;
-		width: 80vw;
-		height: 80vw;
+		width: 70vw;
+		height: 70vw;
+		padding: 5vw;
 		border: 1vw solid gold;
 		border-style: groove;
 		background: white;
 		background-size: contain;
 		background-position: center;
 		background-repeat: no-repeat;
+		background-origin: content-box;
 	}
 	
 	#detail.hidden {
@@ -94,7 +98,7 @@
 			{
 				var dayElement = document.createElement("div");
 				dayElement.classList.add("closed");
-				dayElement.style.backgroundImage = "url(" + day + ".png)";
+				dayElement.style.backgroundImage = "url(" + day + ".jpg)";
 				dayElement.innerHTML = day;
 									
 				dayElement.onclick = function(day, dayElement) {
@@ -130,7 +134,7 @@
 	};
 	
 	var showImage = function(day) {		
-		document.getElementById("detail").style.backgroundImage = "url(" + day + ".png)";
+		document.getElementById("detail").style.backgroundImage = "url(" + day + ".jpg)";
 		document.getElementById("detail").classList.remove("hidden");
 	}
 	
