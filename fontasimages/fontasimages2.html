@@ -1,0 +1,215 @@
+<html>
+	<html>
+		<script type="text/javascript">
+			function process()
+			{
+				processNode(document.body);
+			}
+			
+			function processNode(node)
+			{
+				var tmpNode = node.firstChild;
+				while(tmpNode)
+				{
+					if(tmpNode.nodeType == 3)
+					{
+						var newNode = processTextNode(tmpNode);
+						node.insertBefore(newNode, tmpNode);
+						var tmpNode2 = tmpNode;
+						tmpNode = tmpNode.nextSibling;
+						node.removeChild(tmpNode2);
+					}
+					else
+					{
+						processNode(tmpNode);
+						tmpNode = tmpNode.nextSibling;
+					}
+				}
+			}
+			
+			function processTextNode(node)
+			{
+				var newNode = document.createElement("span");
+				var content = node.data;
+				if(content)
+				{
+					
+					var newContent = "";
+					for(var i = 0; i < content.length; i++)
+					{
+						if(content.charCodeAt(i) == 32)
+						{
+							newContent += "&nbsp;";
+						}
+						else if(content.charCodeAt(i) == 10
+							|| content.charCodeAt(i) == 9)
+						{
+							newContent += content.charAt(i);
+						}
+						else
+						{
+							newContent += "<img src=\"fimg/" + content.charAt(i) + ".png\"/>";
+						}
+					}
+					node.data = newContent;
+					newNode.innerHTML = newContent;
+				}
+				return newNode;
+			}
+		</script>
+	<body>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>
+		this is a test         abcdefghijklmnopqrstuvwxyz<br/>	
+		<script type="text/javascript">
+			process();
+		</script>	
+	</body>
+</html>
