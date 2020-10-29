@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>hex</title>
+<meta charset="UTF-8">
+<script type="text/javascript" src="spread.js"></script>
+<script type="text/javascript">
+	var world;
+
+	init = function() {
+		var w = 800;
+		var h = 300;
+		var scale = 1;		
+		
+		document.getElementById("canvas").width = w;
+		document.getElementById("canvas").height = h;
+		document.getElementById("canvas").style.width = w*scale + "px";
+		document.getElementById("canvas").style.height = h*scale + "px";
+		
+		var start;
+		
+		start = new Date().getTime();
+		world = new World(w, h, spread.PARAM_DEFAULT);
+		console.log(new Date().getTime() - start);
+				
+		start = new Date().getTime();
+		//world.debug(document.getElementById("debug"));
+		console.log(new Date().getTime() - start);		
+		
+		start = new Date().getTime();
+		world.draw(document.getElementById("canvas"), scale);
+		console.log(new Date().getTime() - start);
+	};
+</script>
+<style type="text/css">
+	body {
+		font-weight: bold;
+		font-family: monospace;
+		line-height: 0.8em;
+		width: 100%;
+		height: 100%;
+	}
+	
+	* {
+		padding: 0px;
+		margin: 0px;
+	}
+	
+	#debug {
+		background: #000000;
+		font-size: 8px;
+		position: absolute;
+		left: 100px;
+		top: 500px;
+	}
+		
+	#canvas {
+		background: #000000;
+		position: absolute;
+		left: 100px;
+		top: 100px;
+	}
+</style>
+</head>
+<body onload="init();">
+	<div id="debug"></div>				
+	<canvas id="canvas"></svg>
+</body>
+</html>
