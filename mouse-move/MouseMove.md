@@ -1,0 +1,1 @@
+This is a very simple stand-alone java program, that moves the mouse frequently in order to protect the PC from going to sleep or screensaver. This also will keep you "green" / available in messengers :)
