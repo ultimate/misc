@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="mouse-move"/>
 	<classpathentry kind="src" path="music"/>
 	<classpathentry kind="src" path="files"/>
+	<classpathentry kind="lib" path="files/zip4j-2.11.5.jar" sourcepath="files/zip4j-2.11.5-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
