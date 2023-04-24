@@ -3,6 +3,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="mouse-move"/>
 	<classpathentry kind="src" path="music"/>
-	<classpathentry kind="src" path="ultimate.misc.files"/>
+	<classpathentry kind="src" path="files"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
