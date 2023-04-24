@@ -1,27 +1,36 @@
+package ultimate.misc.mousemove;
 import java.awt.Robot;
 import java.awt.AWTException;
 import java.awt.HeadlessException;
 import java.awt.MouseInfo;
 import java.awt.Point;
 
+/**
+ * This is a very simple stand-alone java program, that moves the mouse frequently in order to protect the PC from going to sleep or screensaver. This
+ * also will keep you "green" / available in messengers :) <br>
+ * <br>
+ * Provided without warranty...
+ * 
+ * @author ultimate
+ */
 public class MouseMove
 {
-	public static final int FACTOR = 1000; // all following numbers in seconds
-	public static final int INTERVAL = 1;
-	public static final int TIMEOUT = 5;
-	public static final int DELTA = 10;
-	
+	public static final int	FACTOR		= 1000;	// all following numbers in seconds
+	public static final int	INTERVAL	= 1;
+	public static final int	TIMEOUT		= 5;
+	public static final int	DELTA		= 10;
+
 	public static void main(String[] args) throws InterruptedException
-	{		
+	{
 		Thread t = new Thread() {
 			public void run()
 			{
 				Robot r = null;
 				Point lastP, newP;
 				int unchangedCount = 0;
-				
+
 				lastP = MouseInfo.getPointerInfo().getLocation();
-				
+
 				while(true)
 				{
 					try
@@ -42,7 +51,7 @@ public class MouseMove
 							}
 							else
 							{
-								System.out.print(".");								
+								System.out.print(".");
 							}
 							unchangedCount++;
 						}
@@ -54,7 +63,7 @@ public class MouseMove
 							lastP = newP;
 							r = null;
 						}
-						Thread.sleep(INTERVAL*FACTOR);
+						Thread.sleep(INTERVAL * FACTOR);
 					}
 					catch(InterruptedException e)
 					{
@@ -71,7 +80,7 @@ public class MouseMove
 				}
 			}
 		};
-		t.start();		
+		t.start();
 		t.join();
 		System.exit(0);
 	}
