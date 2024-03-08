@@ -13,6 +13,9 @@ import java.util.Set;
 public class DuplicateFinder
 {
 	private static final boolean DELETE_FILES = true;
+	private static final boolean DELETE_PRIMARY = false;
+	private static final boolean DELETE_SECONDARY = true;
+	private static final boolean CONSIDER_SIZE = false;
 
 	public static void main(String[] args) throws InterruptedException
 	{
@@ -23,7 +26,11 @@ public class DuplicateFinder
 			@Override
 			public boolean accept(File dir, String name)
 			{
-				return !dir.getName().contains("Mein Fotobuch");
+				if(dir.getName().contains("-Dateien"))
+					return false;
+				if(name.equalsIgnoreCase("thumbs.db"))
+					return false;
+				return true;
 			}
 		};
 
@@ -45,11 +52,15 @@ public class DuplicateFinder
 		{
 			if(f.getAbsolutePath().startsWith(folder1.getAbsolutePath()))
 			{
+				if(!DELETE_PRIMARY)
+					continue;
 				deletedPrimary++;
 				deletedPrimarySize += f.length();
 			}
 			else
 			{
+				if(!DELETE_SECONDARY)
+					continue;
 				deletedOther++;
 				deletedOtherSize += f.length();
 			}
@@ -186,7 +197,7 @@ public class DuplicateFinder
 			}
 			else
 			{
-				String key = file.getName() + ":" + file.length();
+				String key = file.getName() + (CONSIDER_SIZE ? ":" + file.length() : "");
 				synchronized(fileMapping)
 				{
 					if(!fileMapping.containsKey(key))
